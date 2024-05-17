@@ -170,18 +170,16 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
             newItems.appendChild(element)
  }
 
-    document.querySelector('[data-list-items]').appendChild(newItems)
-    document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+    document.querySelector('[data-list-items]').appendChild(newItems);
+    document.querySelector('[data-list-button]').disabled = matches.length - page * BOOKS_PER_PAGE < 1;
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.querySelector('[data-search-overlay]').open = false
+});
 
-    document.querySelector('[data-list-button]').innerHTML = `
+ document.querySelector('[data-list-button]').innerHTML = `
         <span>Show more</span>
         <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
     `
-
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    document.querySelector('[data-search-overlay]').open = false
-})
-
 document.querySelector('[data-list-button]').addEventListener('click', () => {
     const fragment = document.createDocumentFragment()
 
