@@ -1,10 +1,11 @@
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js' //imports books data from data.js file
+// Imports necessary data from data.js file
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js' 
 
+// Page number and Matches variable initialization
 let page = 1;
 let matches = books
 
-
-//function for rendering book previews
+// Function for rendering book previews
 function renderBookPreviews() {
     const starting = document.createDocumentFragment();
 
@@ -12,7 +13,6 @@ function renderBookPreviews() {
     const element = document.createElement('button');
     element.classList = 'preview';
     element.setAttribute('data-preview', id);
-
     element.innerHTML = `
         <img
             class="preview__image"
@@ -30,7 +30,7 @@ function renderBookPreviews() {
 }
 renderBookPreviews(); //function called here
 
-//function for creating options fragment
+// Function for creating  and appending options fragment
 function createOptionsFragment() { 
     const genreHtml = document.createDocumentFragment();
     const firstGenreElement = document.createElement('option');
