@@ -187,9 +187,9 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
     const fragment = document.createDocumentFragment()
 
     for (const { author, id, image, title } of matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE)) {
-        const element = document.createElement('button')
-        element.classList = 'preview'
-        element.setAttribute('data-preview', id)
+        const element = document.createElement('button');
+        element.classList = 'preview';
+        element.setAttribute('data-preview', id);
     
         element.innerHTML = `
             <img
@@ -208,6 +208,8 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
 
     document.querySelector('[data-list-items]').appendChild(fragment)
     page += 1
+
+    remainingBooks();
 })
 
 document.querySelector('[data-list-items]').addEventListener('click', (event) => {
