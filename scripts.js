@@ -78,26 +78,27 @@ document.querySelector('[data-list-button]').innerHTML = `
     <span class="list__remaining"> (${(matches.length - page * BOOKS_PER_PAGE > 0 ? matches.length - page * BOOKS_PER_PAGE : 0)}</span>
 `;
 
+//event listeners 
 document.querySelector('[data-search-cancel]').addEventListener('click', () => {
-    document.querySelector('[data-search-overlay]').open = false
-})
+    document.querySelector('[data-search-overlay]').open = false;
+});
 
 document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
-    document.querySelector('[data-settings-overlay]').open = false
-})
+    document.querySelector('[data-settings-overlay]').open = false;
+});
 
 document.querySelector('[data-header-search]').addEventListener('click', () => {
-    document.querySelector('[data-search-overlay]').open = true 
-    document.querySelector('[data-search-title]').focus()
-})
+    document.querySelector('[data-search-overlay]').open = true;
+    document.querySelector('[data-search-title]').focus();
+});
 
 document.querySelector('[data-header-settings]').addEventListener('click', () => {
-    document.querySelector('[data-settings-overlay]').open = true 
-})
+    document.querySelector('[data-settings-overlay]').open = true;
+});
 
 document.querySelector('[data-list-close]').addEventListener('click', () => {
-    document.querySelector('[data-list-active]').open = false
-})
+    document.querySelector('[data-list-active]').open = false;
+});
 
 document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
     event.preventDefault()
@@ -110,30 +111,29 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
     } else {
         document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
         document.documentElement.style.setProperty('--color-light', '255, 255, 255');
-    }
-    
-    document.querySelector('[data-settings-overlay]').open = false
-})
+    } 
+    document.querySelector('[data-settings-overlay]').open = false;
+});
 
 document.querySelector('[data-search-form]').addEventListener('submit', (event) => {
     event.preventDefault()
-    const formData = new FormData(event.target)
-    const filters = Object.fromEntries(formData)
-    const result = []
+    const formData = new FormData(event.target);
+    const filters = Object.fromEntries(formData);
+    const result = [];
 
     for (const book of books) {
-        let genreMatch = filters.genre === 'any'
+        let genreMatch = filters.genre === 'any';
 
         for (const singleGenre of book.genres) {
             if (genreMatch) break;
-            if (singleGenre === filters.genre) { genreMatch = true }
+            if (singleGenre === filters.genre) { genreMatch = true}
         }
 
         if (
             (filters.title.trim() === '' || book.title.toLowerCase().includes(filters.title.toLowerCase())) && 
             (filters.author === 'any' || book.author === filters.author) && 
-            genreMatch
-        ) {
+            genreMatch) 
+            {
             result.push(book)
         }
     }
