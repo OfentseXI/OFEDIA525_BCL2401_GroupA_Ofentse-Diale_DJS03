@@ -1,8 +1,10 @@
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js' //imports books data from data.js file
 
 let page = 1;
 let matches = books
 
+
+//function for rendering book previews
 function renderBookPreviews() {
     const starting = document.createDocumentFragment();
 
@@ -26,8 +28,9 @@ function renderBookPreviews() {
     }
     document.querySelector('[data-list-items]').appendChild(starting)
 }
-renderBookPreviews();
+renderBookPreviews(); //function called here
 
+//function for creating options fragment
 function createOptionsFragment() { 
     const genreHtml = document.createDocumentFragment();
     const firstGenreElement = document.createElement('option');
@@ -43,7 +46,7 @@ for (const [id, name] of Object.entries(genres)) {
 }
 document.querySelector('[data-search-genres]').appendChild(genreHtml)
 }
-createOptionsFragment();
+createOptionsFragment(); //function called here
 
 const authorsHtml = document.createDocumentFragment();
 const firstAuthorElement = document.createElement('option');
@@ -78,7 +81,7 @@ document.querySelector('[data-list-button]').innerHTML = `
     <span class="list__remaining"> (${(matches.length - page * BOOKS_PER_PAGE > 0 ? matches.length - page * BOOKS_PER_PAGE : 0)})</span>
 `;
 
-//event listeners 
+//Event listeners 
 document.querySelector('[data-search-cancel]').addEventListener('click', () => {
     document.querySelector('[data-search-overlay]').open = false;
 });
@@ -176,6 +179,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     document.querySelector('[data-search-overlay]').open = false
 });
 
+//function to calculate and return the remaining books as the show more button is pressed
 function remainingBooks() {
     document.querySelector('[data-list-button]').innerHTML = 
     `<span>Show more</span>
